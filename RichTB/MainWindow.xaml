@@ -28,6 +28,9 @@
             <ToggleButton Command="EditingCommands.ToggleUnderline" Name="btnUnderline">
                 <Image Source="/Resources/text_underline.png" Width="16" Height="16"/>
             </ToggleButton>
+            <Button x:Name="btnColor"
+                    Content="sas"
+                    Click="btnColor_Click"/>
             <Separator />
             <ComboBox Name="cmbFontFamily" Width="150" SelectionChanged="cmbFontFamily_SelectionChanged" />
             <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />

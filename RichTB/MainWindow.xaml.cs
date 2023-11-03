@@ -29,16 +29,14 @@ namespace RichTB
         {
             get
             {
-
                 byte[] imageData;
-                using (FileStream fs = new FileStream("C:\\Users\\dinar\\source\\repos\\RichTB\\RichTB\\dsds.rtf", FileMode.Open))
+                using (FileStream fs = new FileStream("C:/Users/262023/Source/Repos/DinarShigapov/RichTB/RichTB/dsds.rtf", FileMode.Open))
                 {
                     imageData = new byte[fs.Length];
                     fs.Read(imageData, 0, imageData.Length);
                 }
 
                 String s = System.Text.Encoding.UTF8.GetString(imageData);
-
                 return s;
             }
             set { Data = value; }
@@ -56,6 +54,8 @@ namespace RichTB
             rtbEditor.DataContext = new Table();
         }
 
+        
+
         private void rtbEditor_SelectionChanged(object sender, RoutedEventArgs e)
         {
             object temp = rtbEditor.Selection.GetPropertyValue(Inline.FontWeightProperty);
@@ -65,6 +65,8 @@ namespace RichTB
             temp = rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
             btnUnderline.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextDecorations.Underline));
 
+
+            
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontFamilyProperty);
             cmbFontFamily.SelectedItem = temp;
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontSizeProperty);
@@ -104,6 +106,11 @@ namespace RichTB
         private void cmbFontSize_TextChanged(object sender, TextChangedEventArgs e)
         {
             rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, cmbFontSize.Text);
+        }
+
+        private void btnColor_Click(object sender, RoutedEventArgs e)
+        {
+            rtbEditor.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.Red);
         }
     }
 }
