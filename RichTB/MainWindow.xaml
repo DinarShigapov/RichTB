@@ -36,7 +36,6 @@
             <ComboBox Name="cmbFontSize" Width="50" IsEditable="True" TextBoxBase.TextChanged="cmbFontSize_TextChanged" />
         </ToolBar>
         <RichTextBox Name="rtbEditor" SelectionChanged="rtbEditor_SelectionChanged" 
-                     local:RichTextBoxHelper.DocumentXaml="{Binding Data, Mode=TwoWay}"
-                     />
+                     local:RichTextBoxHelper.DocumentXaml="{Binding Data, Mode=TwoWay}"/>
     </DockPanel>
 </Window>
