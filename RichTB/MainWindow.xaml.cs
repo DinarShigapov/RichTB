@@ -30,7 +30,7 @@ namespace RichTB
             get
             {
                 byte[] imageData;
-                using (FileStream fs = new FileStream("C:/Users/262023/Source/Repos/DinarShigapov/RichTB/RichTB/dsds.rtf", FileMode.Open))
+                using (FileStream fs = new FileStream("C:\\Users\\dinar\\source\\repos\\RichTB\\RichTB\\dsds.rtf", FileMode.Open))
                 {
                     imageData = new byte[fs.Length];
                     fs.Read(imageData, 0, imageData.Length);
@@ -49,6 +49,7 @@ namespace RichTB
         public MainWindow()
         {
             InitializeComponent();
+
             cmbFontFamily.ItemsSource = Fonts.SystemFontFamilies.OrderBy(f => f.Source);
             cmbFontSize.ItemsSource = new List<double>() { 8, 9, 10, 11, 12, 14, 16, 18, 20, 22, 24, 26, 28, 36, 48, 72 };
             rtbEditor.DataContext = new Table();
@@ -65,12 +66,13 @@ namespace RichTB
             temp = rtbEditor.Selection.GetPropertyValue(Inline.TextDecorationsProperty);
             btnUnderline.IsChecked = (temp != DependencyProperty.UnsetValue) && (temp.Equals(TextDecorations.Underline));
 
-
             
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontFamilyProperty);
             cmbFontFamily.SelectedItem = temp;
             temp = rtbEditor.Selection.GetPropertyValue(Inline.FontSizeProperty);
             cmbFontSize.Text = temp.ToString();
+            temp = rtbEditor.Selection.GetPropertyValue(Inline.ForegroundProperty);
+            cmbForeground.SelectedItem = temp;
         }
 
         private void Open_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -108,9 +110,11 @@ namespace RichTB
             rtbEditor.Selection.ApplyPropertyValue(Inline.FontSizeProperty, cmbFontSize.Text);
         }
 
-        private void btnColor_Click(object sender, RoutedEventArgs e)
+
+        private void cmbForeground_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            rtbEditor.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.Red);
+            if (cmbForeground.SelectedItem != null)
+                rtbEditor.Selection.ApplyPropertyValue(TextElement.ForegroundProperty, Brushes.Red);
         }
     }
 }
